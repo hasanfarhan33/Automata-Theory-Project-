@@ -13,10 +13,17 @@ public class Nearest_Neighbour extends Canvas {
 	public static ArrayList<Float> Y_Coordinates = new ArrayList<Float>(); 
 	public static float ShortestDistance = 1000000000; 
 	public static float CurrentDistance = 0; 
-	public static int CurrentIndex = 0; 
+	public static int CurrentIndex = 0;
+	public static float NextCity_X = 0; 
+	public static float NextCity_Y = 0; 
+	public static ArrayList<Float> NextCityX = new ArrayList<Float>();  //Store the X locations of the next city 
+	public static ArrayList<Float> NextCityY = new ArrayList<Float>();  //Store the Y locations of the next city
 	
+	public static ArrayList<Float> ShortestDistances = new ArrayList<Float>();  //Stores the calculated shortest distances in the array 
 	 
 	
+	//float CurrentDistance = (float) Math.sqrt(Math.abs((X_Coordinates.get(j) - X_Coordinates.get(i)) * (X_Coordinates.get(j) - X_Coordinates.get(i))) + Math.abs((Y_Coordinates.get(j) - Y_Coordinates.get(i)) * (Y_Coordinates.get(j) - Y_Coordinates.get(i))));
+
 	
 	public static void main(String[] args) throws FileNotFoundException  {
 		// TODO Auto-generated method stub
@@ -44,10 +51,16 @@ public class Nearest_Neighbour extends Canvas {
 		 //Nearest_Neighbour_Window();
 		
 		Nearest_Neighbour_Algorithm();
+		System.out.println(NextCityX);
+		System.out.println(NextCityY);
+		System.out.println(ShortestDistances);
+		
+		
 	
 
 	}
 	
+
 	public static float[] readFile(String file) throws FileNotFoundException
 	{
 		File Coordinate_File = new File("C:\\Users\\hasan\\Downloads\\Bahcesehir University\\Year 3\\Semester 2\\Formal Languages and Automa Theory\\Project\\att48_xy.txt");
@@ -91,40 +104,74 @@ public class Nearest_Neighbour extends Canvas {
     {
         g.setColor(Color.blue);
         for(int i = 0; i < X_Coordinates.size(); i++){  //This looks at all the x and y coordinates at the same time in both arraylists
-            g.fillOval((Math.round(X_Coordinates.get(i))%800),(Math.round(Y_Coordinates.get(i))%500), 10, 10);
+            g.fillOval((Math.round(X_Coordinates.get(i)) % 800),(Math.round(Y_Coordinates.get(i)) % 500), 10, 10);
+            
         }
     }
 	
 	public static void Nearest_Neighbour_Algorithm()
 	{
-		
-		for(int i = 0; i < X_Coordinates.size(); i++)
+		for(int i = 0; i < X_Coordinates.size(); i++) //Calculate the shortest distance from the first city 
 		{
-			for(int j = 0; j < Y_Coordinates.size(); j++)
+			CurrentDistance = (float) Math.sqrt(Math.abs((X_Coordinates.get(0) - X_Coordinates.get(i)) * (X_Coordinates.get(0) - X_Coordinates.get(i))) + Math.abs((Y_Coordinates.get(0) - Y_Coordinates.get(i)) * (Y_Coordinates.get(0) - Y_Coordinates.get(i))));
+			if(CurrentDistance <= ShortestDistance && CurrentDistance != 0)
 			{
-				if(i == j) //We don't want the same coordinates again 
+				ShortestDistance = CurrentDistance; 
+				NextCity_X = X_Coordinates.get(i); 
+				NextCity_Y = Y_Coordinates.get(i);
+			}
+			
+			
+		}
+		
+		System.out.println("Shortest distance so far : " + ShortestDistance); 
+		System.out.println("Next City X: " + NextCity_X); 
+		System.out.println("Next City Y: " + NextCity_Y);
+		
+		NextCityX.add(NextCity_X); 
+		NextCityY.add(NextCity_Y); 
+		ShortestDistances.add(ShortestDistance);
+		
+		ShortestDistance = 1000000000;
+		
+		for(int i = 0; i < NextCityX.size(); i++)
+		{
+			for(int j = 0; j < X_Coordinates.size(); j++)
+			{
+				
+				System.out.println(j);
+				
+				if(NextCityX.get(i) != X_Coordinates.get(j))
 				{
-					j++; 
+					CurrentDistance = (float) Math.sqrt(Math.abs((NextCityX.get(i) - X_Coordinates.get(j)) * (NextCityX.get(i) - X_Coordinates.get(j))) + Math.abs((NextCityY.get(i) - Y_Coordinates.get(j)) * (NextCityY.get(i) - Y_Coordinates.get(j))));
 				}
-				
-				//float Xdistance = Math.abs(X_Coordinates.get(j) - X_Coordinates.get(i));
-				//System.out.println(X_Coordinates.get(j) + " - " + X_Coordinates.get(i) + " = " +  Xdistance); 
-				
-				float CurrentDistance = (float) Math.sqrt(Math.abs((X_Coordinates.get(j) - X_Coordinates.get(i)) * (X_Coordinates.get(j) - X_Coordinates.get(i))) + Math.abs((Y_Coordinates.get(j) - Y_Coordinates.get(i)) * (Y_Coordinates.get(j) - Y_Coordinates.get(i))));
-				System.out.println("X Coordinate 1 : " + X_Coordinates.get(i)  + "  X Coordinate 2 : " + X_Coordinates.get(j));
-				System.out.println("Y Coordinate 1 : " + Y_Coordinates.get(i) + "  Y Coordinate 2 : " + Y_Coordinates.get(j)); 
-				System.out.println(CurrentDistance); 
 				
 				if(CurrentDistance <= ShortestDistance)
 				{
-					ShortestDistance = CurrentDistance; 
+					ShortestDistance = CurrentDistance;
+					
+					if(j == X_Coordinates.size() - 1)  //Add all the variables into the new arrays here
+					{
+						System.out.println("We are in here"); 
+						ShortestDistances.add(ShortestDistance); 
+						NextCityX.add(X_Coordinates.get(j));
+						NextCityY.add(Y_Coordinates.get(j));
+						ShortestDistance = 1000000000;
+						
+						
+					}
+					
 				}
 				
-				System.out.println("Shortest Distance so far: " + ShortestDistance); 
+				
+				
+			
 			}
 			
-			break; 
+		
 		}
+		
+		
 		
 	}
 	
