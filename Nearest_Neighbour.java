@@ -51,10 +51,12 @@ public class Nearest_Neighbour extends Canvas {
 		 //Nearest_Neighbour_Window();
 		
 		Nearest_Neighbour_Algorithm();
-		System.out.println(NextCityX);
-		System.out.println(NextCityY);
-		System.out.println(ShortestDistances);
 		
+		System.out.println("");
+		System.out.println("Next City X: " + NextCityX);
+		System.out.println("Next City Y: " + NextCityY);
+		System.out.println("Shortest Distances : " + ShortestDistances);
+		System.out.println("Total distance so far : " + TotalDistanceCalculator());
 		
 	
 
@@ -139,42 +141,46 @@ public class Nearest_Neighbour extends Canvas {
 			for(int j = 0; j < X_Coordinates.size(); j++)
 			{
 				
-				System.out.println(j);
+				//System.out.println(j);
 				
-				if(NextCityX.get(i) != X_Coordinates.get(j))
-				{
 					CurrentDistance = (float) Math.sqrt(Math.abs((NextCityX.get(i) - X_Coordinates.get(j)) * (NextCityX.get(i) - X_Coordinates.get(j))) + Math.abs((NextCityY.get(i) - Y_Coordinates.get(j)) * (NextCityY.get(i) - Y_Coordinates.get(j))));
-				}
+					
 				
-				if(CurrentDistance <= ShortestDistance)
+				
+				if(CurrentDistance <= ShortestDistance && CurrentDistance != 0 && CurrentDistance != ShortestDistances.get(i))
 				{
 					ShortestDistance = CurrentDistance;
+					System.out.println("Shortest Distance: " + ShortestDistance);
 					
-					if(j == X_Coordinates.size() - 1)  //Add all the variables into the new arrays here
-					{
-						System.out.println("We are in here"); 
-						ShortestDistances.add(ShortestDistance); 
-						NextCityX.add(X_Coordinates.get(j));
-						NextCityY.add(Y_Coordinates.get(j));
-						ShortestDistance = 1000000000;
-						
-						
-					}
 					
 				}
 				
-				
-				
+				if(j == X_Coordinates.size() - 1)  //Add all the variables into the new arrays here
+				{
+					System.out.println("We are in here"); 
+					ShortestDistances.add(ShortestDistance); 
+					NextCityX.add(X_Coordinates.get(j));
+					NextCityY.add(Y_Coordinates.get(j));
+					ShortestDistance = 1000000000;
+					
+				}
 			
 			}
 			
-		
-		}
-		
-		
-		
+			break; //TRY TO SEE WHAT IS HAPPENING DURING YOUR CODE. YOU'RE SO CLOSE.	
+			
+		}	
 	}
 	
 	
-
+	public static float TotalDistanceCalculator()
+	{
+		float TotalDistance = 0; 
+		for(int i = 0; i < ShortestDistances.size(); i++)
+		{
+			TotalDistance = TotalDistance + ShortestDistances.get(i);
+		}
+		
+		return TotalDistance;
+	}
 }
