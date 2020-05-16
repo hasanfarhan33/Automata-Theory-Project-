@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.Stack;
 
 public class Nearest_Neighbour extends Canvas {
 	
@@ -20,7 +21,9 @@ public class Nearest_Neighbour extends Canvas {
 	public static ArrayList<Float> NextCityY = new ArrayList<Float>();  //Store the Y locations of the next city
 	
 	public static ArrayList<Float> ShortestDistances = new ArrayList<Float>();  //Stores the calculated shortest distances in the array 
-	 
+	public static Stack<Float> CurrentShortestDistances = new Stack<Float>(); 
+	public static Stack<Float> CurrentShortestCoordinateX = new Stack<Float>(); 
+	public static Stack<Float> CurrentShortestCoordinateY = new Stack<Float>(); 
 	
 	//float CurrentDistance = (float) Math.sqrt(Math.abs((X_Coordinates.get(j) - X_Coordinates.get(i)) * (X_Coordinates.get(j) - X_Coordinates.get(i))) + Math.abs((Y_Coordinates.get(j) - Y_Coordinates.get(i)) * (Y_Coordinates.get(j) - Y_Coordinates.get(i))));
 
@@ -52,11 +55,19 @@ public class Nearest_Neighbour extends Canvas {
 		
 		Nearest_Neighbour_Algorithm();
 		
+		
 		System.out.println("");
 		System.out.println("Next City X: " + NextCityX);
+		System.out.println("");
 		System.out.println("Next City Y: " + NextCityY);
+		System.out.println("");
 		System.out.println("Shortest Distances : " + ShortestDistances);
+		System.out.println("");
 		System.out.println("Total distance so far : " + TotalDistanceCalculator());
+		System.out.println("");
+		System.out.println("Remaining X Coordinates = " + X_Coordinates.size());
+		System.out.println("");
+		System.out.println("Remaining Y Coordinates = " + Y_Coordinates.size());
 		
 	
 
@@ -138,6 +149,7 @@ public class Nearest_Neighbour extends Canvas {
 		
 		for(int i = 0; i < NextCityX.size(); i++)
 		{
+			
 			for(int j = 0; j < X_Coordinates.size(); j++)
 			{
 				
@@ -145,32 +157,54 @@ public class Nearest_Neighbour extends Canvas {
 				
 					CurrentDistance = (float) Math.sqrt(Math.abs((NextCityX.get(i) - X_Coordinates.get(j)) * (NextCityX.get(i) - X_Coordinates.get(j))) + Math.abs((NextCityY.get(i) - Y_Coordinates.get(j)) * (NextCityY.get(i) - Y_Coordinates.get(j))));
 					
-				
+					if(CurrentDistance == 0) //Remove the previous city
+					{
+						//System.out.println(" ");
+						//System.out.println("You are in the same city");
+						X_Coordinates.remove(j);
+						Y_Coordinates.remove(j);
+					}
 				
 				if(CurrentDistance <= ShortestDistance && CurrentDistance != 0 && CurrentDistance != ShortestDistances.get(i))
 				{
 					ShortestDistance = CurrentDistance;
-					System.out.println("Shortest Distance: " + ShortestDistance);
+					//System.out.println("Shortest Distance: " + ShortestDistance);
+					CurrentShortestDistances.push(ShortestDistance);
 					
 					
+					CurrentShortestCoordinateX.push(X_Coordinates.get(j));
+					CurrentShortestCoordinateY.push(Y_Coordinates.get(j));
 				}
 				
-				if(j == X_Coordinates.size() - 1)  //Add all the variables into the new arrays here
+				if(j == X_Coordinates.size() - 1)
 				{
-					System.out.println("We are in here"); 
-					ShortestDistances.add(ShortestDistance); 
-					NextCityX.add(X_Coordinates.get(j));
-					NextCityY.add(Y_Coordinates.get(j));
+					//System.out.println("We are in here");
+					//System.out.println("Shortest Distance = " + CurrentShortestDistances.peek());
+					ShortestDistances.add(CurrentShortestDistances.peek());
+					//System.out.println(ShortestDistances);
+					CurrentShortestDistances.clear(); 
 					ShortestDistance = 1000000000;
 					
+					NextCityX.add(CurrentShortestCoordinateX.peek());
+					NextCityY.add(CurrentShortestCoordinateY.peek());
 				}
-			
+				
+				
+				
 			}
 			
-			break; //TRY TO SEE WHAT IS HAPPENING DURING YOUR CODE. YOU'RE SO CLOSE.	
+			if(i == 30)
+			{
+				break;
+			}
+			
+		
+			
 			
 		}	
 	}
+	
+	
 	
 	
 	public static float TotalDistanceCalculator()
