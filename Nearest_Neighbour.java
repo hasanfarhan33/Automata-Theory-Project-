@@ -3,6 +3,7 @@ import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -24,6 +25,7 @@ public class Nearest_Neighbour extends Canvas {
 	public static Stack<Float> CurrentShortestDistances = new Stack<Float>(); 
 	public static Stack<Float> CurrentShortestCoordinateX = new Stack<Float>(); 
 	public static Stack<Float> CurrentShortestCoordinateY = new Stack<Float>(); 
+	public static Random RandomCity = new Random(); 
 	
 	//float CurrentDistance = (float) Math.sqrt(Math.abs((X_Coordinates.get(j) - X_Coordinates.get(i)) * (X_Coordinates.get(j) - X_Coordinates.get(i))) + Math.abs((Y_Coordinates.get(j) - Y_Coordinates.get(i)) * (Y_Coordinates.get(j) - Y_Coordinates.get(i))));
 
@@ -124,9 +126,12 @@ public class Nearest_Neighbour extends Canvas {
 	
 	public static void Nearest_Neighbour_Algorithm()
 	{
+		int RandomIndex = RandomCity.nextInt(X_Coordinates.size());
+		System.out.println("Random Index = " + RandomIndex);
+		
 		for(int i = 0; i < X_Coordinates.size(); i++) //Calculate the shortest distance from the first city 
 		{
-			CurrentDistance = (float) Math.sqrt(Math.abs((X_Coordinates.get(0) - X_Coordinates.get(i)) * (X_Coordinates.get(0) - X_Coordinates.get(i))) + Math.abs((Y_Coordinates.get(0) - Y_Coordinates.get(i)) * (Y_Coordinates.get(0) - Y_Coordinates.get(i))));
+			CurrentDistance = (float) Math.sqrt(Math.abs((X_Coordinates.get(RandomIndex) - X_Coordinates.get(i)) * (X_Coordinates.get(RandomIndex) - X_Coordinates.get(i))) + Math.abs((Y_Coordinates.get(RandomIndex) - Y_Coordinates.get(i)) * (Y_Coordinates.get(RandomIndex) - Y_Coordinates.get(i))));
 			if(CurrentDistance <= ShortestDistance && CurrentDistance != 0)
 			{
 				ShortestDistance = CurrentDistance; 
@@ -193,7 +198,7 @@ public class Nearest_Neighbour extends Canvas {
 				
 			}
 			
-			if(i == 30)
+			if(X_Coordinates.size() == 2 && Y_Coordinates.size() == 2)
 			{
 				break;
 			}
