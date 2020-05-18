@@ -30,6 +30,13 @@ public class Nearest_Neighbour extends Canvas {
 	public static float FirstCityY = 0; 
 	public static float LastCityX = 0; 
 	public static float LastCityY = 0; 
+	public static float LastDistance = 0; 
+	public static float TotalDistance = 0; 
+
+	public static float LastElementX = 0; 
+	public static float LastElementY = 0; 
+	public static boolean LastElementsRemoved = false;
+
 	
 	//float CurrentDistance = (float) Math.sqrt(Math.abs((X_Coordinates.get(j) - X_Coordinates.get(i)) * (X_Coordinates.get(j) - X_Coordinates.get(i))) + Math.abs((Y_Coordinates.get(j) - Y_Coordinates.get(i)) * (Y_Coordinates.get(j) - Y_Coordinates.get(i))));
 
@@ -55,7 +62,10 @@ public class Nearest_Neighbour extends Canvas {
 		
 		 //Nearest_Neighbour_Window();
 		
+		
 		Nearest_Neighbour_Algorithm();
+		TotalDistance = TotalDistanceCalculator() + LastDistance;
+		
 		
 		System.out.println("");
 		System.out.println("_______________RESULTS______________");
@@ -63,9 +73,13 @@ public class Nearest_Neighbour extends Canvas {
 		System.out.println("Shortest distances : " + ShortestDistances);
 		System.out.println("Remaining X Coordinates : " + X_Coordinates); 
 		System.out.println("Remaining Y Coordinates : " + Y_Coordinates);
+		
 		System.out.println("Next City X : " + NextCityX);
 		System.out.println("Next City Y : " + NextCityY);
-		System.out.println("Total distance : " + TotalDistanceCalculator());
+		
+		System.out.println("Final Distance : " + LastDistance);
+		System.out.println("Total Distance : " + TotalDistance);
+		
 		
 		
 		
@@ -141,11 +155,12 @@ public class Nearest_Neighbour extends Canvas {
 					FirstCityY = Y_Coordinates.get(i);
 					
 					X_Coordinates.remove(i); //Remove the coordinates from the array after storing it in another variable
-					Y_Coordinates.remove(i);
+					Y_Coordinates.remove(i);	
+					
 				}
 				else
 				{
-					if(CurrentDistance <= ShortestDistance)
+					if(CurrentDistance <= ShortestDistance && LastElementsRemoved == false)
 					{
 						ShortestDistance = CurrentDistance; 
 						
@@ -185,50 +200,76 @@ public class Nearest_Neighbour extends Canvas {
 				
 				System.out.println( NextCityX.get(i) + ", " + NextCityY.get(i) + "   " + X_Coordinates.get(j) + ", " + Y_Coordinates.get(j) + "     " + CurrentDistance);
 				
-				if(CurrentDistance == 0)
+				if(CurrentDistance == 0 && j < X_Coordinates.size() - 1)
 				{
 					
 					X_Coordinates.remove(j);
 					Y_Coordinates.remove(j);
+				}
+				
+				else if(CurrentDistance == 0 && j == X_Coordinates.size() - 1)
+				{
 					
-					if(X_Coordinates.size() == 1)
+					LastElementsRemoved = true; 
+					
+				}
+				
+				if(LastElementsRemoved == false)
+				{
+					if(CurrentDistance <= ShortestDistance && CurrentDistance != 0 && CurrentDistance != ShortestDistances.get(ShortestDistances.size() - 1))
 					{
-						LastCityX = X_Coordinates.get(j);
-						LastCityY = Y_Coordinates.get(j);
+						
+						ShortestDistance = CurrentDistance; 
+						System.out.println("Smallest Distance : " + ShortestDistance);
+						CurrentShortestDistances.push(ShortestDistance);
+						CurrentShortestCoordinateX.push(X_Coordinates.get(j));
+						CurrentShortestCoordinateY.push(Y_Coordinates.get(j));	
 					}
 					
+					if(j == X_Coordinates.size() - 1)
+					{
+						
+						ShortestDistances.add(CurrentShortestDistances.peek());
+						NextCityX.add(CurrentShortestCoordinateX.peek());
+						NextCityY.add(CurrentShortestCoordinateY.peek());
+						
+						ShortestDistance = 1000000000;
+						
+					}
 				}
-				
-				else if(CurrentDistance <= ShortestDistance && CurrentDistance != ShortestDistances.get(ShortestDistances.size() - 1))
+				else
 				{
-					ShortestDistance = CurrentDistance; 
-					CurrentShortestDistances.push(ShortestDistance);
-					CurrentShortestCoordinateX.push(X_Coordinates.get(j));
-					CurrentShortestCoordinateY.push(Y_Coordinates.get(j));
+					if(CurrentDistance <= ShortestDistance && CurrentDistance != 0 && CurrentDistance != ShortestDistances.get(ShortestDistances.size() - 1) && j != X_Coordinates.get(X_Coordinates.size() - 1))
+					{
+						ShortestDistance = CurrentDistance; 
+						System.out.println("Smallest Distance : " + ShortestDistance);
+						CurrentShortestDistances.push(ShortestDistance);
+						CurrentShortestCoordinateX.push(X_Coordinates.get(j));
+						CurrentShortestCoordinateY.push(Y_Coordinates.get(j));
+					}
+					if(j == X_Coordinates.size() - 1)
+					{
+						
+						ShortestDistances.add(CurrentShortestDistances.peek());
+						NextCityX.add(CurrentShortestCoordinateX.peek());
+						NextCityY.add(CurrentShortestCoordinateY.peek());
+						
+						ShortestDistance = 1000000000;
+					}
 				}
-				
-				if(j == X_Coordinates.size() - 1)
-				{
-					ShortestDistances.add(CurrentShortestDistances.peek());
-					NextCityX.add(CurrentShortestCoordinateX.peek());
-					NextCityY.add(CurrentShortestCoordinateY.peek());
 					
-					CurrentShortestCoordinateX.clear();
-					CurrentShortestCoordinateY.clear();
-					CurrentShortestDistances.clear();
-					
-					ShortestDistance = 1000000000;
-					
-				}
 				
-				
-				
-				
-			
 			}
 			
-			if(X_Coordinates.size() == 1 && Y_Coordinates.size() == 1)
+			if(X_Coordinates.size() == 2 && Y_Coordinates.size() == 2)
 			{
+				LastCityX = X_Coordinates.get(1);
+				LastCityY = Y_Coordinates.get(1);
+				
+				LastDistance = (float) Math.sqrt(Math.abs((LastCityX - FirstCityX) * (LastCityX - FirstCityX)) + Math.abs((LastCityY - FirstCityY) * (LastCityY - FirstCityY)));
+				
+				
+				
 				break;
 			}
 				
@@ -242,12 +283,14 @@ public class Nearest_Neighbour extends Canvas {
 	
 	public static float TotalDistanceCalculator()
 	{
-		float TotalDistance = 0; 
+		float SemiTotalDistance = 0; 
 		for(int i = 0; i < ShortestDistances.size(); i++)
 		{
-			TotalDistance = TotalDistance + ShortestDistances.get(i);
+			SemiTotalDistance = SemiTotalDistance + ShortestDistances.get(i);
 		}
 		
-		return TotalDistance;
+		
+		
+		return SemiTotalDistance;
 	}
 }
