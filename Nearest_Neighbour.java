@@ -35,7 +35,7 @@ public class Nearest_Neighbour extends Canvas {
 
 	public static float LastElementX = 0; 
 	public static float LastElementY = 0; 
-	public static boolean LastElementsRemoved = false;
+	public static boolean LastElementRemoved = false;
 	public static boolean BeenThere = false; 
 	
 	public static ArrayList<Float> LineX = new ArrayList<Float>();
@@ -72,30 +72,32 @@ public class Nearest_Neighbour extends Canvas {
 		
 		 
 		
-		
+		long StartTime = System.nanoTime();
 		Nearest_Neighbour_Algorithm();
 		Nearest_Neighbour_Window();
 		TotalDistance = TotalDistanceCalculator() + LastDistance;
-		SameNumberChecker();
+		long EndTime = System.nanoTime(); 
+		
+		long TimeElapsed = EndTime - StartTime; 
+		
+		
+		
+		//SameNumberChecker();
 		
 		
 		System.out.println("");
 		System.out.println("_______________RESULTS______________");
+		
+		System.out.println("Time taken : " + TimeElapsed/1000000 + " milliseconds");
+		
 		System.out.println("Remaining X and Y Coordinates = " + X_Coordinates.size());
 		System.out.println("Shortest distances : " + ShortestDistances);
 		System.out.println("Remaining X Coordinates : " + X_Coordinates); 
 		System.out.println("Remaining Y Coordinates : " + Y_Coordinates);
-		
 		System.out.println("First City : " + FirstCityX + ", " + FirstCityY);
 		System.out.println("Last City : " + LastCityX + ", " + LastCityY);
-		
-		
 		System.out.println("Next City X : " + NextCityX);
 		System.out.println("Next City Y : " + NextCityY);
-		
-		System.out.println("Line X : " + LineX);
-		System.out.println("Line Y : " + LineY);
-		
 		System.out.println("Final Distance : " + LastDistance);
 		System.out.println("Total Distance : " + TotalDistance);
 		
@@ -152,7 +154,7 @@ public class Nearest_Neighbour extends Canvas {
 	public void paint(Graphics g) //This is for the dots
     { 
        g.setColor(Color.BLACK);
-       //g.drawLine((int)FirstCityX % 1000, (int)FirstCityY % 1000, (int)LastCityX % 1000, (int)LastCityY % 1000);
+       g.drawLine((int)FirstCityX % 1000, (int)FirstCityY % 1000, (int)LastCityX % 1000, (int)LastCityY % 1000);
        g.drawLine((int)FirstCityX % 1000, (int)FirstCityY % 1000, (int)(NextCityX.get(0) % 1000), (int)(NextCityY.get(0) % 1000));
        
        for(int i = 0; i < NextCityX.size(); i++)
@@ -166,6 +168,8 @@ public class Nearest_Neighbour extends Canvas {
     	   }
     	   
        }
+       
+       
        
        g.setColor(Color.blue);
        for(int i = 0; i < DotX.size(); i++) //This looks at all the x and y coordinates at the same time in both arraylists
@@ -208,7 +212,7 @@ public class Nearest_Neighbour extends Canvas {
 				}
 				else
 				{
-					if(CurrentDistance <= ShortestDistance && LastElementsRemoved == false)
+					if(CurrentDistance <= ShortestDistance && LastElementRemoved == false)
 					{
 						ShortestDistance = CurrentDistance; 
 						
@@ -259,11 +263,11 @@ public class Nearest_Neighbour extends Canvas {
 				else if(CurrentDistance == 0 && j == X_Coordinates.size() - 1)
 				{
 					
-					LastElementsRemoved = true; 
+					LastElementRemoved = true; 
 					
 				}
 				
-				if(LastElementsRemoved == false)
+				if(LastElementRemoved == false)
 				{
 					if(CurrentDistance <= ShortestDistance && CurrentDistance != 0 && CurrentDistance != ShortestDistances.get(ShortestDistances.size() - 1))
 					{
@@ -298,7 +302,7 @@ public class Nearest_Neighbour extends Canvas {
 				}
 				else
 				{
-					if(CurrentDistance <= ShortestDistance && CurrentDistance != 0 && CurrentDistance != ShortestDistances.get(ShortestDistances.size() - 1) && j != X_Coordinates.get(X_Coordinates.size() - 1))
+					if(CurrentDistance <= ShortestDistance && CurrentDistance != 0 && CurrentDistance != ShortestDistances.get(ShortestDistances.size() - 1) && j != X_Coordinates.get(X_Coordinates.size() - 1) && j != X_Coordinates.size() - 1)
 					{
 						ShortestDistance = CurrentDistance; 
 						
@@ -377,6 +381,7 @@ public class Nearest_Neighbour extends Canvas {
 			}
 		}
 	}
+	
 	
 	
 }
