@@ -226,7 +226,7 @@ public class Greedy_Algorithm extends Canvas {
         greedyAlgorithm();
         Date endDate = new Date();
 
-        //mainWindow();
+        mainWindow();
 
         int numSeconds = (int)((endDate.getTime() - startDate.getTime()));
         System.out.println("The algorithm needs " + numSeconds + " milli seconds.");
@@ -239,6 +239,114 @@ public class Greedy_Algorithm extends Canvas {
         for (int i = 0; i < paintX.size(); i++) {  //This looks at all the x and y coordinates at the same time in both arraylists
             g.fillOval((Math.round(paintX.get(i)) % 800), (Math.round(paintY.get(i)) % 500), 10, 10);
         }
+        //
+//        for (int counter = 0; counter < paintX.size(); counter++) {
+//            System.out.println("Xs: " + paintX.get(counter));
+//        }
+
+//        System.out.println("Paint X: " + paintX.get(0) + " Paint Y: " + paintY.get(0));
+//        System.out.println("Paint currentCityX1: " + currentCityX1 + "Paint currentCityY1: " + currentCityY1);
+//        System.out.println("Paint currentCityX1: " + currentCityX2 + "Paint currentCityY1: " + currentCityY2);
+
+        g.drawLine(Math.round(paintX.get(0)) % 800 + 5, Math.round(paintY.get(0)) % 500 + 5, Math.round(currentCityX1) % 800 + 5, Math.round(currentCityY1) % 500 + 5);
+        g.drawLine(Math.round(currentCityX1) % 800 + 5, Math.round(currentCityY1) % 500 + 5, Math.round(currentCityX2) % 800 + 5, Math.round(currentCityY2) % 500 + 5);
+        g.drawLine(Math.round(currentCityX2) % 800 + 5, Math.round(currentCityY2) % 500 + 5, Math.round(currentCityX3) % 800 + 5, Math.round(currentCityY3) % 500 + 5);
+        g.drawLine(Math.round(currentCityX3) % 800 + 5, Math.round(currentCityY3) % 500 + 5, Math.round(currentCityX4) % 800 + 5, Math.round(currentCityY4) % 500 + 5);
+        g.drawLine(Math.round(currentCityX4) % 800 + 5, Math.round(currentCityY4) % 500 + 5, Math.round(currentCityX5) % 800 + 5, Math.round(currentCityY5) % 500 + 5);
+        g.drawLine(Math.round(currentCityX5) % 800 + 5, Math.round(currentCityY5) % 500 + 5, Math.round(currentCityX6) % 800 + 5, Math.round(currentCityY6) % 500 + 5);
+        g.drawLine(Math.round(currentCityX6) % 800 + 5, Math.round(currentCityY6) % 500 + 5, Math.round(currentCityX7) % 800 + 5, Math.round(currentCityY7) % 500 + 5);
+        g.drawLine(Math.round(currentCityX7) % 800 + 5, Math.round(currentCityY7) % 500 + 5, Math.round(currentCityX8) % 800 + 5, Math.round(currentCityY8) % 500 + 5);
+        g.drawLine(Math.round(currentCityX8) % 800 + 5, Math.round(currentCityY8) % 500 + 5, Math.round(currentCityX9) % 800 + 5, Math.round(currentCityY9) % 500 + 5);
+        g.drawLine(Math.round(currentCityX9) % 800 + 5, Math.round(currentCityY9) % 500 + 5, Math.round(currentCityX10) % 800 + 5, Math.round(currentCityY10) % 500 + 5);
+        g.drawLine(Math.round(currentCityX10) % 800 + 5, Math.round(currentCityY10) % 500 + 5, Math.round(currentCityX11) % 800 + 5, Math.round(currentCityY11) % 500 + 5);
+        g.drawLine(Math.round(currentCityX11) % 800 + 5, Math.round(currentCityY11) % 500 + 5, Math.round(currentCityX12) % 800 + 5, Math.round(currentCityY12) % 500 + 5);
+        g.drawLine(Math.round(currentCityX12) % 800 + 5, Math.round(currentCityY12) % 500 + 5, Math.round(currentCityX13) % 800 + 5, Math.round(currentCityY13) % 500 + 5);
+        g.drawLine(Math.round(currentCityX13) % 800 + 5, Math.round(currentCityY13) % 500 + 5, Math.round(currentCityX14) % 800 + 5, Math.round(currentCityY14) % 500 + 5);
+        g.drawLine(Math.round(currentCityX14) % 800 + 5, Math.round(currentCityY14) % 500 + 5, Math.round(currentCityX15) % 800 + 5, Math.round(currentCityY15) % 500 + 5);
+        g.drawLine(Math.round(currentCityX15) % 800 + 5, Math.round(currentCityY15) % 500 + 5, Math.round(currentCityX16) % 800 + 5, Math.round(currentCityY16) % 500 + 5);
+        g.drawLine(Math.round(currentCityX16) % 800 + 5, Math.round(currentCityY16) % 500 + 5, Math.round(currentCityX17) % 800 + 5, Math.round(currentCityY17) % 500 + 5);
+        g.drawLine(Math.round(currentCityX17) % 800 + 5, Math.round(currentCityY17) % 500 + 5, Math.round(currentCityX18) % 800 + 5, Math.round(currentCityY18) % 500 + 5);
+        g.drawLine(Math.round(currentCityX18) % 800 + 5, Math.round(currentCityY18) % 500 + 5, Math.round(currentCityX19) % 800 + 5, Math.round(currentCityY19) % 500 + 5);
+        g.drawLine(Math.round(currentCityX19) % 800 + 5, Math.round(currentCityY19) % 500 + 5, Math.round(currentCityX20) % 800 + 5, Math.round(currentCityY20) % 500 + 5);
+        g.drawLine(Math.round(currentCityX20) % 800 + 5, Math.round(currentCityY20) % 500 + 5, Math.round(currentCityX21) % 800 + 5, Math.round(currentCityY21) % 500 + 5);
+        g.drawLine(Math.round(currentCityX21) % 800 + 5, Math.round(currentCityY21) % 500 + 5, Math.round(currentCityX22) % 800 + 5, Math.round(currentCityY22) % 500 + 5);
+        g.drawLine(Math.round(currentCityX22) % 800 + 5, Math.round(currentCityY22) % 500 + 5, Math.round(currentCityX23) % 800 + 5, Math.round(currentCityY23) % 500 + 5);
+        g.drawLine(Math.round(currentCityX23) % 800 + 5, Math.round(currentCityY23) % 500 + 5, Math.round(currentCityX24) % 800 + 5, Math.round(currentCityY24) % 500 + 5);
+        g.drawLine(Math.round(currentCityX24) % 800 + 5, Math.round(currentCityY24) % 500 + 5, Math.round(currentCityX25) % 800 + 5, Math.round(currentCityY25) % 500 + 5);
+        g.drawLine(Math.round(currentCityX25) % 800 + 5, Math.round(currentCityY25) % 500 + 5, Math.round(currentCityX26) % 800 + 5, Math.round(currentCityY26) % 500 + 5);
+        g.drawLine(Math.round(currentCityX26) % 800 + 5, Math.round(currentCityY26) % 500 + 5, Math.round(currentCityX27) % 800 + 5, Math.round(currentCityY27) % 500 + 5);
+        g.drawLine(Math.round(currentCityX27) % 800 + 5, Math.round(currentCityY27) % 500 + 5, Math.round(currentCityX28) % 800 + 5, Math.round(currentCityY28) % 500 + 5);
+        g.drawLine(Math.round(currentCityX28) % 800 + 5, Math.round(currentCityY28) % 500 + 5, Math.round(currentCityX29) % 800 + 5, Math.round(currentCityY29) % 500 + 5);
+        g.drawLine(Math.round(currentCityX29) % 800 + 5, Math.round(currentCityY29) % 500 + 5, Math.round(currentCityX30) % 800 + 5, Math.round(currentCityY30) % 500 + 5);
+        g.drawLine(Math.round(currentCityX30) % 800 + 5, Math.round(currentCityY30) % 500 + 5, Math.round(currentCityX31) % 800 + 5, Math.round(currentCityY31) % 500 + 5);
+        g.drawLine(Math.round(currentCityX31) % 800 + 5, Math.round(currentCityY31) % 500 + 5, Math.round(currentCityX32) % 800 + 5, Math.round(currentCityY32) % 500 + 5);
+        g.drawLine(Math.round(currentCityX32) % 800 + 5, Math.round(currentCityY32) % 500 + 5, Math.round(currentCityX33) % 800 + 5, Math.round(currentCityY33) % 500 + 5);
+        g.drawLine(Math.round(currentCityX33) % 800 + 5, Math.round(currentCityY33) % 500 + 5, Math.round(currentCityX34) % 800 + 5, Math.round(currentCityY34) % 500 + 5);
+        g.drawLine(Math.round(currentCityX34) % 800 + 5, Math.round(currentCityY34) % 500 + 5, Math.round(currentCityX35) % 800 + 5, Math.round(currentCityY35) % 500 + 5);
+        g.drawLine(Math.round(currentCityX35) % 800 + 5, Math.round(currentCityY35) % 500 + 5, Math.round(currentCityX36) % 800 + 5, Math.round(currentCityY36) % 500 + 5);
+        g.drawLine(Math.round(currentCityX36) % 800 + 5, Math.round(currentCityY36) % 500 + 5, Math.round(currentCityX37) % 800 + 5, Math.round(currentCityY37) % 500 + 5);
+        g.drawLine(Math.round(currentCityX37) % 800 + 5, Math.round(currentCityY37) % 500 + 5, Math.round(currentCityX38) % 800 + 5, Math.round(currentCityY38) % 500 + 5);
+        g.drawLine(Math.round(currentCityX38) % 800 + 5, Math.round(currentCityY38) % 500 + 5, Math.round(currentCityX39) % 800 + 5, Math.round(currentCityY39) % 500 + 5);
+        g.drawLine(Math.round(currentCityX39) % 800 + 5, Math.round(currentCityY39) % 500 + 5, Math.round(currentCityX40) % 800 + 5, Math.round(currentCityY40) % 500 + 5);
+        g.drawLine(Math.round(currentCityX40) % 800 + 5, Math.round(currentCityY40) % 500 + 5, Math.round(currentCityX41) % 800 + 5, Math.round(currentCityY41) % 500 + 5);
+        g.drawLine(Math.round(currentCityX41) % 800 + 5, Math.round(currentCityY41) % 500 + 5, Math.round(currentCityX42) % 800 + 5, Math.round(currentCityY42) % 500 + 5);
+        g.drawLine(Math.round(currentCityX42) % 800 + 5, Math.round(currentCityY42) % 500 + 5, Math.round(currentCityX43) % 800 + 5, Math.round(currentCityY43) % 500 + 5);
+        g.drawLine(Math.round(currentCityX43) % 800 + 5, Math.round(currentCityY43) % 500 + 5, Math.round(currentCityX44) % 800 + 5, Math.round(currentCityY44) % 500 + 5);
+        g.drawLine(Math.round(currentCityX44) % 800 + 5, Math.round(currentCityY44) % 500 + 5, Math.round(currentCityX45) % 800 + 5, Math.round(currentCityY45) % 500 + 5);
+        g.drawLine(Math.round(currentCityX45) % 800 + 5, Math.round(currentCityY45) % 500 + 5, Math.round(currentCityX46) % 800 + 5, Math.round(currentCityY46) % 500 + 5);
+        g.drawLine(Math.round(currentCityX46) % 800 + 5, Math.round(currentCityY46) % 500 + 5, Math.round(lastElementOnTheListX) % 800 + 5, Math.round(lastElementOnTheListY) % 500 + 5);
+        g.drawLine(Math.round(paintX.get(0)) % 800 + 5, Math.round(paintY.get(0)) % 500 + 5, Math.round(lastElementOnTheListX) % 800 + 5, Math.round(lastElementOnTheListY) % 500 + 5);
+
+
+
+
+//        System.out.println("paintX.get(0): " + paintX.get(0) + " paintY.get(0): " + paintY.get(0));
+//        System.out.println("currentCityX1: " + currentCityX1 + " currentCityY1: " + currentCityY1);
+//        System.out.println("currentCityX2: " + currentCityX2 + " currentCityY2: " + currentCityY2);
+//        System.out.println("currentCityX3: " + currentCityX3 + " currentCityY4: " + currentCityY3);
+//        System.out.println("currentCityX4: " + currentCityX4 + " currentCityY5: " + currentCityY4);
+//        System.out.println("currentCityX5: " + currentCityX5 + " currentCityY6: " + currentCityY5);
+//        System.out.println("currentCityX6: " + currentCityX6 + " currentCityY7: " + currentCityY6);
+//        System.out.println("currentCityX7: " + currentCityX7 + " currentCityY8: " + currentCityY7);
+//        System.out.println("currentCityX8: " + currentCityX8 + " currentCityY9: " + currentCityY8);
+//        System.out.println("currentCityX9: " + currentCityX9 + " currentCityY10: " + currentCityY9);
+//        System.out.println("currentCityX10: " + currentCityX10 + " currentCityY11: " + currentCityY10);
+//        System.out.println("currentCityX11: " + currentCityX11 + " currentCityY12: " + currentCityY11);
+//        System.out.println("currentCityX12: " + currentCityX12 + " currentCityY13: " + currentCityY12);
+//        System.out.println("currentCityX13: " + currentCityX13 + " currentCityY14: " + currentCityY13);
+//        System.out.println("currentCityX14: " + currentCityX14 + " currentCityY15: " + currentCityY14);
+//        System.out.println("currentCityX15: " + currentCityX15 + " currentCityY16: " + currentCityY15);
+//        System.out.println("currentCityX16: " + currentCityX16 + " currentCityY17: " + currentCityY16);
+//        System.out.println("currentCityX17: " + currentCityX17 + " currentCityY18: " + currentCityY17);
+//        System.out.println("currentCityX18: " + currentCityX18 + " currentCityY19: " + currentCityY18);
+//        System.out.println("currentCityX19: " + currentCityX19 + " currentCityY10: " + currentCityY19);
+//        System.out.println("currentCityX20: " + currentCityX20 + " currentCityY20: " + currentCityY20);
+//        System.out.println("currentCityX21: " + currentCityX21 + " currentCityY21: " + currentCityY21);
+//        System.out.println("currentCityX22: " + currentCityX22 + " currentCityY22: " + currentCityY22);
+//        System.out.println("currentCityX23: " + currentCityX23 + " currentCityY23: " + currentCityY23);
+//        System.out.println("currentCityX24: " + currentCityX24 + " currentCityY24: " + currentCityY24);
+//        System.out.println("currentCityX25: " + currentCityX25 + " currentCityY25: " + currentCityY25);
+//        System.out.println("currentCityX26: " + currentCityX26 + " currentCityY26: " + currentCityY26);
+//        System.out.println("currentCityX27: " + currentCityX27 + " currentCityY27: " + currentCityY27);
+//        System.out.println("currentCityX28: " + currentCityX28 + " currentCityY28: " + currentCityY28);
+//        System.out.println("currentCityX29: " + currentCityX29 + " currentCityY29: " + currentCityY29);
+//        System.out.println("currentCityX30: " + currentCityX30 + " currentCityY30: " + currentCityY30);
+//        System.out.println("currentCityX31: " + currentCityX31 + " currentCityY31: " + currentCityY31);
+//        System.out.println("currentCityX32: " + currentCityX32 + " currentCityY32: " + currentCityY32);
+//        System.out.println("currentCityX33: " + currentCityX33 + " currentCityY33: " + currentCityY33);
+//        System.out.println("currentCityX34: " + currentCityX34 + " currentCityY34: " + currentCityY34);
+//        System.out.println("currentCityX35: " + currentCityX35 + " currentCityY35: " + currentCityY35);
+//        System.out.println("currentCityX36: " + currentCityX36 + " currentCityY36: " + currentCityY36);
+//        System.out.println("currentCityX37: " + currentCityX37 + " currentCityY37: " + currentCityY37);
+//        System.out.println("currentCityX38: " + currentCityX38 + " currentCityY38: " + currentCityY38);
+//        System.out.println("currentCityX39: " + currentCityX39 + " currentCityY39: " + currentCityY39);
+//        System.out.println("currentCityX40: " + currentCityX40 + " currentCityY40: " + currentCityY40);
+//        System.out.println("currentCityX41: " + currentCityX41 + " currentCityY41: " + currentCityY41);
+//        System.out.println("currentCityX42: " + currentCityX42 + " currentCityY41: " + currentCityY42);
+//        System.out.println("currentCityX43: " + currentCityX43 + " currentCityY42: " + currentCityY43);
+//        System.out.println("currentCityX44: " + currentCityX44 + " currentCityY43: " + currentCityY44);
+//        System.out.println("currentCityX45: " + currentCityX45 + " currentCityY44: " + currentCityY45);
+//        System.out.println("currentCityX46: " + currentCityX46 + " currentCityY45: " + currentCityY46);
 
     }
 
