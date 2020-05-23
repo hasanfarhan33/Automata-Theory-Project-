@@ -74,11 +74,14 @@ public class Nearest_Neighbour extends Canvas {
 		
 		long StartTime = System.nanoTime();
 		Nearest_Neighbour_Algorithm();
-		Nearest_Neighbour_Window();
 		TotalDistance = TotalDistanceCalculator() + LastDistance;
 		long EndTime = System.nanoTime(); 
-		
 		long TimeElapsed = EndTime - StartTime; 
+		Nearest_Neighbour_Window();
+		
+		
+		
+		
 		
 		
 		
@@ -226,7 +229,7 @@ public class Nearest_Neighbour extends Canvas {
 				
 				
 				
-				if(i == X_Coordinates.size() - 1)
+				if(i == X_Coordinates.size() - 1 && CurrentShortestDistances.isEmpty() == false)
 				{
 					ShortestDistances.add(CurrentShortestDistances.peek());
 					NextCityX.add(CurrentShortestCoordinateX.peek());
@@ -281,7 +284,7 @@ public class Nearest_Neighbour extends Canvas {
 						CurrentShortestCoordinateY.push(Y_Coordinates.get(j));	
 					}
 					
-					if(j == X_Coordinates.size() - 1)
+					if(j == X_Coordinates.size() - 1 && CurrentShortestDistances.isEmpty() == false)
 					{
 						
 						ShortestDistances.add(CurrentShortestDistances.peek());
@@ -313,7 +316,7 @@ public class Nearest_Neighbour extends Canvas {
 						CurrentShortestCoordinateX.push(X_Coordinates.get(j));
 						CurrentShortestCoordinateY.push(Y_Coordinates.get(j));
 					}
-					if(j == X_Coordinates.size() - 1)
+					if(j == X_Coordinates.size() - 1 && CurrentShortestDistances.isEmpty() == false)
 					{
 						
 						ShortestDistances.add(CurrentShortestDistances.peek());
